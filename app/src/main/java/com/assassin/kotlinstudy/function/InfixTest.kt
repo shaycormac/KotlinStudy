@@ -20,8 +20,18 @@ import android.support.annotation.RequiresApi
  
  * 
  */
-class infixTest
+class InfixTest
 {
+    var name:String=""
+
+    constructor(name: String) {
+        this.name = name
+    }
+
+    infix fun sameAge(infixTest: InfixTest):Boolean
+    {
+        return this.name==infixTest.name
+    }
 }
 
 
@@ -56,6 +66,17 @@ fun main()
         println("element: $element is not into list")
     }
 
+    val infix1 = InfixTest("李")
+    val infix2 = InfixTest("李")
+    println(infix1 sameAge (infix2)) 
     
     
 }
+
+//自定义中缀函数
+infix fun String.sameAs(target:String): Boolean
+{
+    return this == target
+}
+
+infix fun <T>   T.into(list:List<T>):Boolean = list.contains(this)

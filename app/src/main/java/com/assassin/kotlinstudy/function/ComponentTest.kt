@@ -18,6 +18,13 @@ package com.assassin.kotlinstudy.function
  */
 class ComponentTest 
 {
+    /**
+     * 
+     */
+    fun zhang(x: Any, y: Any): Unit {
+        
+        
+    }
 }
 
 fun main()
