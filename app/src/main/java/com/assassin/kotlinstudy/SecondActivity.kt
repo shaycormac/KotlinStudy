@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import com.assassin.kotlinstudy.adapter.ListAdapter
 import com.assassin.kotlinstudy.app.BaseActivity
+import com.assassin.kotlinstudy.delegation.PreferenceDelegate
 import com.assassin.kotlinstudy.delegation.SPDelegate
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -54,8 +55,10 @@ class SecondActivity:BaseActivity()
        println(string)
         //执行了set
         string="张三"
+        println(string)
         
        
-        
+        var string2 :String by PreferenceDelegate<String>(this,"what","youA")
+        println(string)
     }
 }
