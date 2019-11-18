@@ -1,7 +1,7 @@
 package com.assassin.kotlinstudy.coroutine.net
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import com.assassin.kotlinstudy.coroutine.bean.LoginObject
 import com.assassin.kotlinstudy.coroutine.bean.LoginResult

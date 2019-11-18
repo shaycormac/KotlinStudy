@@ -1,6 +1,6 @@
 package com.assassin.kotlinstudy.mvvm.data
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 
 /**
  * Author: Shay-Patrick-Cormac

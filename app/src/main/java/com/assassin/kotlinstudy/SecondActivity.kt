@@ -1,8 +1,8 @@
 package com.assassin.kotlinstudy
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.OrientationHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
 import com.assassin.kotlinstudy.adapter.ListAdapter
 import com.assassin.kotlinstudy.app.BaseActivity
 import com.assassin.kotlinstudy.delegation.PreferenceDelegate
@@ -26,7 +26,7 @@ class SecondActivity:BaseActivity()
     private var name:String?=null
     private var id:Int?=null
     private var adapter:ListAdapter?=null
-    private var lauoutManager:LinearLayoutManager?=null
+    private var lauoutManager: androidx.recyclerview.widget.LinearLayoutManager?=null
     private var list:ArrayList<String>?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,9 +39,9 @@ class SecondActivity:BaseActivity()
         name=intent.getStringExtra("name")
         id=intent.getIntExtra("id",1)
         tv_intent2.setText(name+" "+id)
-        lauoutManager= LinearLayoutManager(this)
+        lauoutManager= androidx.recyclerview.widget.LinearLayoutManager(this)
         rvKotlin.layoutManager=lauoutManager
-        lauoutManager!!.orientation=OrientationHelper.VERTICAL
+        lauoutManager!!.orientation= androidx.recyclerview.widget.OrientationHelper.VERTICAL
         list = ArrayList<String>()
         for (i in 0..9)
         {

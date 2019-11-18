@@ -1,7 +1,7 @@
 package com.assassin.kotlinstudy.function
 
 import android.os.Build
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 
 /**
  * Author: Shay-Patrick-Cormac

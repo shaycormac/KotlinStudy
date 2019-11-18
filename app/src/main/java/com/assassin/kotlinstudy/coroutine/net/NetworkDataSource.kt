@@ -1,6 +1,6 @@
 package com.assassin.kotlinstudy.coroutine.net
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.assassin.kotlinstudy.coroutine.bean.LoginObject
 import com.assassin.kotlinstudy.coroutine.bean.LoginResult
 

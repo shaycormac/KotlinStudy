@@ -1,6 +1,6 @@
 package com.assassin.kotlinstudy.mvvm.ui
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.assassin.kotlinstudy.mvvm.data.Book
 import com.assassin.kotlinstudy.mvvm.data.BookRepository
 

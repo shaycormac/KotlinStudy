@@ -1,9 +1,9 @@
 package com.assassin.kotlinstudy.mvvm.ui
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.assassin.kotlinstudy.R
 import com.assassin.kotlinstudy.mvvm.data.Book
 import kotlinx.android.synthetic.main.activity_mvvm.*

@@ -1,7 +1,7 @@
 package com.assassin.kotlinstudy.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ import com.assassin.kotlinstudy.R
  * Version: 1.0
  * Description: 类说明
  */
-class ListAdapter(private val context: Context,private val datas:List<String>): RecyclerView.Adapter<ListAdapter.MyViwHolder>()
+class ListAdapter(private val context: Context,private val datas:List<String>): androidx.recyclerview.widget.RecyclerView.Adapter<ListAdapter.MyViwHolder>()
 {
     private var inflater:LayoutInflater?=null
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViwHolder {
@@ -33,7 +33,7 @@ class ListAdapter(private val context: Context,private val datas:List<String>): 
          p0.tv.text = datas!![p1]
     }
 
-    class MyViwHolder(view: View):RecyclerView.ViewHolder(view)
+    class MyViwHolder(view: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
     {
         var tv: TextView
         init {
