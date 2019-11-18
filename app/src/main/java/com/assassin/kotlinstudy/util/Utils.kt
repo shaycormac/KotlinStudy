@@ -1,6 +1,6 @@
 package com.assassin.kotlinstudy.util
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -83,7 +83,7 @@ class Utils {
     }
     
     //Activity.toast 指定了this 的含义和使用地方
-    fun Activity.toast(msg:String)
+    fun AppCompatActivity.toast(msg:String)
     {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
         

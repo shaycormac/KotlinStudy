@@ -1,10 +1,9 @@
 package com.assassin.kotlinstudy.app
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.assassin.kotlinstudy.sample.KassandraSingle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +46,7 @@ abstract class BaseActivity :AppCompatActivity(),CoroutineScope {
         println(str2)
     }
     
-    fun Activity.toast(msg:String)
+    fun AppCompatActivity.toast(msg:String)
     {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         
