@@ -1,8 +1,6 @@
 package com.assassin.kotlinstudy.coroutine.net
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 
 /**
  * Author: Shay-Patrick-Cormac
@@ -14,13 +12,5 @@ import androidx.lifecycle.Observer
  */
 class SingleLiveData<T>:MutableLiveData<T>()
 {
-    override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
-        super.observe(owner, Observer { 
-            if (it!=null)
-            {
-                observer.onChanged(it)
-                postValue(null)
-            }
-        })
-    }
+    
 }

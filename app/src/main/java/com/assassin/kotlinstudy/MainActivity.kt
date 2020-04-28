@@ -3,6 +3,7 @@ package com.assassin.kotlinstudy
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import com.assassin.kotlinstudy.app.BaseActivity
@@ -10,6 +11,7 @@ import com.assassin.kotlinstudy.coroutine.DownloadActivity
 import com.assassin.kotlinstudy.coroutine.GithubApiActivity
 import com.assassin.kotlinstudy.dsl._addListener
 import com.assassin.kotlinstudy.entity.User
+import com.assassin.kotlinstudy.intentservice.MyTestIntentService
 import com.assassin.kotlinstudy.lambda.showDialog
 import com.assassin.kotlinstudy.mvvm.ui.MvvmActivity
 import com.assassin.kotlinstudy.net.APiClient
@@ -19,6 +21,10 @@ import com.assassin.kotlinstudy.util.Utils
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
+import java.net.NetworkInterface
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 /**
  * kotlin学习笔记: ? 和 ?. 和 ?: 和 as? 和 !!
@@ -67,6 +73,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 //扩展方法
                 this@MainActivity.showDialog("扩展函数",true,{showToast(this@MainActivity,"标题")}){
                     showToast(this@MainActivity,"haha")
+                    var shareIntent = Intent()
+                    shareIntent.action = Intent.ACTION_SEND
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Here is the Shared text.")
+//切记需要使用Intent.createChooser，否则会出现别样的应用选择框，您可以试试
+                    //切记需要使用Intent.createChooser，否则会出现别样的应用选择框，您可以试试
+                    shareIntent = Intent.createChooser(shareIntent, "Here is the title of Select box")
+                    startActivity(shareIntent)
+
                 }
             }
             
@@ -88,6 +103,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("MainActivity","onCreate（） is invoked！")
         initView()
         //把可空类型的x赋值给非空类型的y会报错：Type mismatch
         //3、也不能把可空类型的值传给非空类型 var y:String是非空
@@ -135,7 +151,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         tv_intent.text="产品名："+Build.PRODUCT+"\n"+"设备名："+Build.DEVICE+"\n"+"制造商:"+Build.MANUFACTURER+"\n"+"品牌："+Build.BRAND+"\n设备用户名："+Build.USER
         
         
-        
+        MyTestIntentService.startActionFoo(this,"aa","bb")
+        MyTestIntentService.startActionFoo(this,"bb","bb")
+        MyTestIntentService.startActionFoo(this,"cc","bb")
         
                 
     }
@@ -159,7 +177,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         tv_download.setOnClickListener(this)
         tv_mvvm.setOnClickListener(this)
         tv_dsl.setOnClickListener(this)
-        APiClient().getListRepo("1", ResultObserver(object:ResultListener<List<User>>{
+      /*  APiClient().getListRepo("1", ResultObserver(object:ResultListener<List<User>>{
             override fun complete(t: List<User>) {
                 showToast(this@MainActivity,t.size.toString()+"  "+t.get(0).full_name)
             }
@@ -167,7 +185,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             override fun onError(e: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
-        }))
+        }))*/
         
         
         
@@ -185,6 +203,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
         }
         
+        Log.e("获取唯一的ID",getMacAddress())
+        val androidId: String = Settings.System.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        Log.e("获取唯一的ID",androidId)
+
+
     }
 
     //  ? 可空类型
@@ -216,5 +239,57 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.e("MainActivity","onDestroy() is invoked！")
     }
+
+    override fun onPause() {
+        super.onPause();
+        Log.e("MainActivity","onPause() is invoked！");
+    }
+
+    override fun onResume() {
+        super.onResume();
+        Log.e("MainActivity","onResume() is invoked！");
+    }
+
+    override fun onStart() {
+        super.onStart();
+        Log.e("MainActivity","onStart() is invoked！");
+    }
+
+    override fun onRestart() {
+        super.onRestart();
+        Log.e("MainActivity","onRestart() is invoked！");
+    }
+
+    override fun onStop() {
+        super.onStop();
+        Log.e("MainActivity","onStop() is invoked！");
+    }
+
+
+    private fun getMacAddress(): String? {
+        try {
+            val all: List<NetworkInterface> = Collections.list(NetworkInterface.getNetworkInterfaces())
+            for (nif in all) {
+                if (!nif.name.equals("wlan0",true)) {
+                    continue
+                }
+                val macBytes: ByteArray = nif.hardwareAddress ?: return ""
+                val res1 = StringBuilder()
+                for (b in macBytes) {
+                    res1.append(String.format("%02X:", b))
+                }
+                if (res1.isNotEmpty()) {
+                    res1.deleteCharAt(res1.length - 1)
+                }
+                return res1.toString()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+
 }

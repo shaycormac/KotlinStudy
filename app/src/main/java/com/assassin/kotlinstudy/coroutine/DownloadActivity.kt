@@ -38,7 +38,7 @@ class DownloadActivity:BaseActivity() {
                 }
                 //切回IO线程创建下载的文件
                 val url = et_url.text.toString()
-                val file = File(externalCacheDir.absolutePath+"/hehe.apk")
+                val file = File(externalCacheDir?.absolutePath+"/hehe.apk")
                 file.createNewFile()
                 //通过GitHubService.getInstance()可以直接拿到GitHubService对象
                 val response:Response<ResponseBody> = GitHubService.getInstance().downloadFile(url).execute()

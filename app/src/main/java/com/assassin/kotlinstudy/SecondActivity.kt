@@ -1,6 +1,7 @@
 package com.assassin.kotlinstudy
 
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import com.assassin.kotlinstudy.adapter.ListAdapter
@@ -31,6 +32,7 @@ class SecondActivity:BaseActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("SecondActivity","onCreate() is invoked！")
         initView()
     }
 
@@ -61,4 +63,36 @@ class SecondActivity:BaseActivity()
         var string2 :String by PreferenceDelegate<String>(this,"what","youA")
         println(string)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("SecondActivity","onDestroy() is invoked！")
+    }
+
+    override fun onPause() {
+        super.onPause();
+        Log.e("SecondActivity","onPause() is invoked！");
+    }
+
+    override fun onResume() {
+        super.onResume();
+        Log.e("SecondActivity","onResume() is invoked！");
+    }
+
+    override fun onStart() {
+        super.onStart();
+        Log.e("SecondActivity","onStart() is invoked！");
+    }
+
+    override fun onRestart() {
+        super.onRestart();
+        Log.e("SecondActivity","onRestart() is invoked！");
+    }
+
+    override fun onStop() {
+        super.onStop();
+        Log.e("SecondActivity","onStop() is invoked！");
+    }
+    
+    
 }

@@ -1,5 +1,7 @@
 package com.assassin.kotlinstudy.mvvm.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.assassin.kotlinstudy.mvvm.data.Book
 import com.assassin.kotlinstudy.mvvm.data.BookRepository
@@ -16,9 +18,22 @@ import com.assassin.kotlinstudy.mvvm.data.BookRepository
  */
 class BooksViewModel(private val bookRepository: BookRepository):ViewModel()
 {
+    
+    val bookListLiveData:LiveData<List<Book>>
+    get() = _books
+    
+    
+    private  val _books = MutableLiveData<List<Book>>()
+    
+    
     fun addBook(book: Book): Unit {
         bookRepository.addBook(book)
     }
 
     fun getBooks() = bookRepository.getBooks()
+    
+    fun getBooks2()
+    {
+       _books.value =  bookRepository.getBooks().value
+    }
 }
