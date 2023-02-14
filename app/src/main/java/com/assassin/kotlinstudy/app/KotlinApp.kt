@@ -12,11 +12,16 @@ import com.assassin.kotlinstudy.lifeowner.ToastWarn
  * Version: 1.0
  * Description: 类说明
  */
-class KotlinApp:Application()
-{
+class KotlinApp : Application() {
     override fun onCreate() {
         super.onCreate()
         //监测app的生命周期
         ProcessLifecycleOwner.get().lifecycle.addObserver(ToastWarn())
+        kotlinApp = this
+    }
+
+    companion object {
+        lateinit var kotlinApp: KotlinApp
+        fun getApp(): KotlinApp = kotlinApp
     }
 }
