@@ -93,6 +93,33 @@
             android:padding="10dp"
             android:text="dsl学习"/>
 
+        <TextView
+            android:id="@+id/tv_high_order_fun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="高阶函数学习"/>
+
+        <TextView
+            android:id="@+id/tv_coroutines_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="协程学习"/>
+
+        <TextView
+            android:id="@+id/tv_coroutines_view_study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="协程View学习"/>
+
     </LinearLayout>
     
 </androidx.core.widget.NestedScrollView>

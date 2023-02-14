@@ -7,24 +7,33 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import com.assassin.kotlinstudy.app.BaseActivity
+import com.assassin.kotlinstudy.builder.House
+import com.assassin.kotlinstudy.coroutine.CoroutinesActivity
 import com.assassin.kotlinstudy.coroutine.DownloadActivity
 import com.assassin.kotlinstudy.coroutine.GithubApiActivity
+import com.assassin.kotlinstudy.delegate.Dog
+import com.assassin.kotlinstudy.delegate.Teddy
 import com.assassin.kotlinstudy.dsl._addListener
 import com.assassin.kotlinstudy.entity.User
 import com.assassin.kotlinstudy.intentservice.MyTestIntentService
 import com.assassin.kotlinstudy.lambda.showDialog
 import com.assassin.kotlinstudy.mvvm.ui.MvvmActivity
 import com.assassin.kotlinstudy.net.APiClient
-import com.assassin.kotlinstudy.net.ResultListener
-import com.assassin.kotlinstudy.net.ResultObserver
+import com.assassin.kotlinstudy.sample.createAlertDialog
 import com.assassin.kotlinstudy.util.Utils
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
+import java.io.File
 import java.net.NetworkInterface
 import java.util.*
 import kotlin.collections.ArrayList
-
+import kotlin.random.Random
 
 /**
  * kotlin学习笔记: ? 和 ?. 和 ?: 和 as? 和 !!
@@ -37,7 +46,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     
     override fun onClick(v: View?) 
     {
-        when(v!!.id)
+        when(v?.id)
         {
             R.id.tv_getdata ->
             {
@@ -84,8 +93,38 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
                 }
             }
+            R.id.tv_high_order_fun->
+            {
+                showToast(this@MainActivity,"点击了啊")
+                createAlertDialog(this@MainActivity,"标题","内容"){
+                    showToast(this@MainActivity,"hehe")
+                }.show()
+            }
+            
+            R.id.tv_coroutines_study ->{
+                startActivity(Intent(this@MainActivity,CoroutinesActivity::class.java))
+            }
+            R.id.tv_coroutines_view_study -> {
+                startActivity(Intent(this@MainActivity, CoroutineViewActivity::class.java))
+                //测试并发
+                val ioScope = CoroutineScope(Dispatchers.Default)
+
+                ioScope.launch {
+                    for (a in 1 until  100)
+                    {
+                        testCoroutine()
+                    }
+                }
+            }
             
         }
+    }
+    
+    suspend fun testCoroutine()
+    {
+        val randomSleep = Random.nextInt(1,50)
+        delay(randomSleep.toLong())
+        println("当前执行任务的线程是:${Thread.currentThread().name}，睡了$randomSleep 毫秒" )
     }
 
     //获取网络数据
@@ -155,6 +194,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         MyTestIntentService.startActionFoo(this,"bb","bb")
         MyTestIntentService.startActionFoo(this,"cc","bb")
         
+        //设计模式
+
+        var dog = Dog()
+        var teddy = Teddy(dog)
+        val result= "${dog.eat("shi")}\n${teddy.eat("丑事")}"
+        val house: House = House.Builder().setDoor("haha").setStone("石头").setWindow("窗户").setWood("红木加护").builder()
+        
                 
     }
 
@@ -177,6 +223,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         tv_download.setOnClickListener(this)
         tv_mvvm.setOnClickListener(this)
         tv_dsl.setOnClickListener(this)
+        tv_coroutines_study.setOnClickListener(this)
+        tv_coroutines_view_study.setOnClickListener(this)
       /*  APiClient().getListRepo("1", ResultObserver(object:ResultListener<List<User>>{
             override fun complete(t: List<User>) {
                 showToast(this@MainActivity,t.size.toString()+"  "+t.get(0).full_name)
@@ -203,10 +251,22 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
         }
         
-        Log.e("获取唯一的ID",getMacAddress())
+        Log.e("获取唯一的ID",getMacAddress()?:"得到的是空值")
         val androidId: String = Settings.System.getString(contentResolver, Settings.Secure.ANDROID_ID)
         Log.e("获取唯一的ID",androidId)
+        
+        val ioCoroutineScope = CoroutineScope(Dispatchers.IO)
+        ioCoroutineScope.launch { 
+            delay(300)
 
+
+            withContext(Dispatchers.Default) {
+
+            }
+
+        }
+        
+       
 
     }
 
@@ -289,6 +349,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             e.printStackTrace()
         }
         return null
+    }
+
+    /**
+     *  测试文件的读取
+     * @param path String
+     * @return Unit
+     */
+    fun testKotlinIO(path: String): Unit {
+        val file = File(path)
+        file.readLines().forEach { line ->
+            //打印粗来
+            println(line)
+        }
     }
 
 

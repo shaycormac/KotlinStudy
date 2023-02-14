@@ -1,6 +1,8 @@
 package com.assassin.kotlinstudy.app
 
 import android.app.Application
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.assassin.kotlinstudy.lifeowner.ToastWarn
 
 /**
  * Author: Shay-Patrick-Cormac
@@ -14,5 +16,7 @@ class KotlinApp:Application()
 {
     override fun onCreate() {
         super.onCreate()
+        //监测app的生命周期
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ToastWarn())
     }
 }

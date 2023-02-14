@@ -12,11 +12,18 @@ import android.widget.TextView
  */
 
 //自定义扩展属性
-var TextView.isBold:Boolean
-get() {
-    return  this.paint.isFakeBoldText
-}
+var TextView.isBold: Boolean
+    get() {
+        return this.paint.isFakeBoldText
+    }
     set(value) {
-        this.paint.isFakeBoldText =value
-        
+        this.paint.isFakeBoldText = value
+
+    }
+
+// 扩展属性只读
+
+val TextView.readText: CharSequence?
+    get() {
+        return this.text
     }

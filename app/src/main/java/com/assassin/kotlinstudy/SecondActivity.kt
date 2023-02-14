@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.assassin.kotlinstudy.adapter.ListAdapter
 import com.assassin.kotlinstudy.app.BaseActivity
 import com.assassin.kotlinstudy.delegation.PreferenceDelegate
@@ -41,9 +42,9 @@ class SecondActivity:BaseActivity()
         name=intent.getStringExtra("name")
         id=intent.getIntExtra("id",1)
         tv_intent2.setText(name+" "+id)
-        lauoutManager= androidx.recyclerview.widget.LinearLayoutManager(this)
+        lauoutManager= LinearLayoutManager(this)
         rvKotlin.layoutManager=lauoutManager
-        lauoutManager!!.orientation= androidx.recyclerview.widget.OrientationHelper.VERTICAL
+        lauoutManager!!.orientation= RecyclerView.VERTICAL
         list = ArrayList<String>()
         for (i in 0..9)
         {

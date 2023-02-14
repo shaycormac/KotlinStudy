@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CoroutineViewFragment">
+
+    <TextView
+        android:id="@+id/tv_coroutine_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+
+    <ImageView
+        android:id="@+id/img_coroutine_view"
+        android:layout_gravity="center"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:src="@mipmap/ic_launcher" />
+    
+    <TextView
+        android:layout_marginBottom="?actionBarSize"
+        android:text="你多你也骂啊"
+        android:layout_gravity="bottom|center_horizontal"
+        android:id="@+id/tv_second_coroutine_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+        <Button
+            android:text="同时启动"
+            android:layout_weight="1"
+            android:id="@+id/btn_test_coroutine_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="前两个先"
+            android:layout_weight="1"
+            android:id="@+id/btn_test_coroutine_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="延时启动"
+            android:layout_weight="1"
+            android:id="@+id/btn_test_coroutine_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+           
+            android:text="重复动画"
+            android:layout_weight="1"
+            android:id="@+id/btn_test_coroutine_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        
+    </LinearLayout>
+    
+
+</FrameLayout>
