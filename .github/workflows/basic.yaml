@@ -25,10 +25,21 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+        # lint 检查
+      - name: Check lint
+        if: always()
+        run: ./gradlew lint
+
+      - name: Run Unit Tests
+        if: always()
+        run: ./gradlew testDebugUnitTest
+        
+        
+# 执行编译
       - name: Generate AAR and APK files
         if: always()
         run: ./gradlew assembleDebug
-
+# 执行上传文件 actions/upload-artifact@v2是一个
       - name: Upload AAR files
         if: always()
         uses: actions/upload-artifact@v2
