@@ -1,7 +1,9 @@
 package com.assassin.kotlinstudy.entity
 
+
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+
 
 /**
  * Author:      Shay-Patrick-Cormac
@@ -11,4 +13,4 @@ import kotlinx.android.parcel.Parcelize
  * Description: 测试1。4。21版本的parcel plugin
  */
 @Parcelize
-data class TestParcelPlugin(val name:String):Parcelable
+data class TestParcelPlugin(val name:String): Parcelable

@@ -1,5 +1,7 @@
 package com.assassin.kotlinstudy.entity;
 
+import com.assassin.kotlinstudy.decompile.UtilKt;
+
 /**
  * Author: Shay-Patrick-Cormac
  * Email: fang47881@126.com
@@ -31,7 +33,7 @@ class Father{
     
     public void save(String hehe)
     {
-        
+        UtilKt.handlerString("ddd");
     }
 }
 

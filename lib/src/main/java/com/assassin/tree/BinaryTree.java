@@ -83,7 +83,7 @@ public class BinaryTree implements Tree {
         }
     }
 
-    // 找到最大值
+    // 找到最大值，因为排好序了，所以右侧是最大的
     public Node findMax() {
         Node current = root;
         Node maxNode = current;

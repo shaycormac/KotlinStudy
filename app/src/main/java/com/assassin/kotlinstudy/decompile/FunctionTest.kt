@@ -1,5 +1,6 @@
 package com.assassin.kotlinstudy.decompile
 
+import com.assassin.kotlinstudy.util.Utils
 import java.lang.StringBuilder
 import java.util.function.Function
 
@@ -25,5 +26,7 @@ val functionB: (Set<String>) -> String = { set ->
 
 fun main() {
     functionA.invoke("hahah")
-    functionB.invoke(setOf("dd","de"))
+    val result = functionB.invoke(setOf("dd","de"))
+    println(result)
+    handlerString("wocao")
 }

@@ -17,5 +17,6 @@ fun handlerString(target:String)
   val isNiHao =  target.startsWith("mihao")
     
     val heheehe = target.replace(":","//")
+    println("execute over!")
     
 }
